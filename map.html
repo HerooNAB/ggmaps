@@ -339,7 +339,7 @@
             type: "GET",
             url: "https://roads.googleapis.com/v1/snapToRoads",
             data: {
-              interpolate: $("#interpolate"),
+              interpolate: $("#interpolate").is(":checked"),
               key: API_KEY,
               path: coords,
             },
@@ -527,8 +527,8 @@
             placeIds.push(data.snappedPoints[i].placeId);
 
             // Cross-reference the original point and this snapped point.
-            latlng.related = originals[latlng.originalIndex];
-            originals[latlng.originalIndex].related = latlng;
+            // latlng.related = originals[latlng.originalIndex];
+            // originals[latlng.originalIndex].related = latlng;
           }
 
           var unsnappedPoints = getMissingPoints(
