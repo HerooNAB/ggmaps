@@ -131,13 +131,13 @@
       var API_KEY = "AIzaSyDJ8qtUhVb7se1VMUsNugrAY6EZIEnJoVg";
 
       // Icons for markers
-      // var RED_MARKER = "https://maps.google.com/mapfiles/ms/icons/red-dot.png";
-      // var GREEN_MARKER =
-      //   "https://maps.google.com/mapfiles/ms/icons/green-dot.png";
-      // var BLUE_MARKER =
-      //   "https://maps.google.com/mapfiles/ms/icons/blue-dot.png";
-      // var YELLOW_MARKER =
-      //   "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
+      var RED_MARKER = "https://maps.google.com/mapfiles/ms/icons/red-dot.png";
+      var GREEN_MARKER =
+        "https://maps.google.com/mapfiles/ms/icons/green-dot.png";
+      var BLUE_MARKER =
+        "https://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+      var YELLOW_MARKER =
+        "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
 
       // URL for places requests
       var PLACES_URL =
@@ -147,7 +147,7 @@
         "&placeid=";
 
       // URL for Speed limits
-      // var SPEED_LIMIT_URL = "https://roads.googleapis.com/v1/speedLimits";
+      var SPEED_LIMIT_URL = "https://roads.googleapis.com/v1/speedLimits";
 
       var coords;
 
@@ -233,15 +233,15 @@
           $("#plot").trigger("click");
         });
 
-        // $("#toggle").click(function (e) {
-        //   if ($("#panel").css("display") != "none") {
-        //     $("#toggle").html("+");
-        //     $("#panel").hide();
-        //   } else {
-        //     $("#toggle").html("&mdash;");
-        //     $("#panel").show();
-        //   }
-        // });
+        $("#toggle").click(function (e) {
+          if ($("#panel").css("display") != "none") {
+            $("#toggle").html("+");
+            $("#panel").hide();
+          } else {
+            $("#toggle").html("&mdash;");
+            $("#panel").show();
+          }
+        });
 
         // Centre the map on Sydney
         var mapOptions = {
@@ -332,51 +332,51 @@
 
         // Make AJAX request to the snapToRoadsAPI
         // with coordinates parsed from text input element.
-        // function bendAndSnap() {
-        //   coords = parseCoordsFromQuery($("#coords").val());
-        //   location.hash = coords;
-        //   $.ajax({
-        //     type: "GET",
-        //     url: "https://roads.googleapis.com/v1/snapToRoads",
-        //     data: {
-        //       interpolate: $("#interpolate").is(":checked"),
-        //       key: API_KEY,
-        //       path: coords,
-        //     },
-        //     success: function (data) {
-        //       $("#requestURL").html(
-        //         '<a target="blank" href="' + this.url + '">Request URL</a>'
-        //       );
-        //       processSnapToRoadResponse(data);
-        //       drawSnappedPolyline(snappedCoordinates);
-        //       drawOriginals(originals);
-        //       fitBounds(markers);
-        //     },
-        //     error: function () {
-        //       $("#requestURL").html(
-        //         "<strong>That query didn't work :(</strong>" +
-        //           '<p>Try looking at the <a href="' +
-        //           this.url +
-        //           '">Request URL</a></p>'
-        //       );
-        //       clearMap();
-        //     },
-        //   });
-        // }
+        function bendAndSnap() {
+          coords = parseCoordsFromQuery($("#coords").val());
+          location.hash = coords;
+          $.ajax({
+            type: "GET",
+            url: "https://roads.googleapis.com/v1/snapToRoads",
+            data: {
+              interpolate: $("#interpolate").is(":checked"),
+              key: API_KEY,
+              path: coords,
+            },
+            success: function (data) {
+              $("#requestURL").html(
+                '<a target="blank" href="' + this.url + '">Request URL</a>'
+              );
+              processSnapToRoadResponse(data);
+              drawSnappedPolyline(snappedCoordinates);
+              drawOriginals(originals);
+              fitBounds(markers);
+            },
+            error: function () {
+              $("#requestURL").html(
+                "<strong>That query didn't work :(</strong>" +
+                  '<p>Try looking at the <a href="' +
+                  this.url +
+                  '">Request URL</a></p>'
+              );
+              clearMap();
+            },
+          });
+        }
 
-        // // Toggle the distance polylines of the original points to show on the maps
-        // $("#distance").click(function (e) {
-        //   for (var i = 0; i < distPolylines.length; i++) {
-        //     distPolylines[i].setVisible(!distPolylines[i].getVisible());
-        //   }
-        //   // Clear all infoWindows associated with distance polygons on toggle
-        //   for (var i = 0; i < infoWindows.length; i++) {
-        //     if (infoWindows[i].dist) {
-        //       infoWindows[i].close();
-        //     }
-        //   }
-        //   e.preventDefault();
-        // });
+        // Toggle the distance polylines of the original points to show on the maps
+        $("#distance").click(function (e) {
+          for (var i = 0; i < distPolylines.length; i++) {
+            distPolylines[i].setVisible(!distPolylines[i].getVisible());
+          }
+          // Clear all infoWindows associated with distance polygons on toggle
+          for (var i = 0; i < infoWindows.length; i++) {
+            if (infoWindows[i].dist) {
+              infoWindows[i].close();
+            }
+          }
+          e.preventDefault();
+        });
 
         /**
          * Compute the distance between each original point and create a polyline
@@ -730,7 +730,7 @@
           $("#panel").addClass("floating panel");
           $("#button-div").addClass("button-div");
           $("#coords").removeClass("coords-large").addClass("coords-small");
-          // $("#toggle").show();
+          $("#toggle").show();
           $("#map").height("100%");
         }
       });
@@ -844,44 +844,44 @@
        * @param {ExtendedLatLng} coords - Coords of where to add the marker
        * @return {!Object} marker - the marker object created
        */
-      // function addMarker(coords) {
-      //   var marker = new google.maps.Marker({
-      //     position: coords,
-      //     title: coords.lat + "," + coords.lng,
-      //     map: map,
-      //     opacity: 0.5,
-      //     icon: RED_MARKER,
-      //   });
+      function addMarker(coords) {
+        var marker = new google.maps.Marker({
+          position: coords,
+          title: coords.lat + "," + coords.lng,
+          map: map,
+          opacity: 0.5,
+          icon: RED_MARKER,
+        });
 
-      //   // Coord should NEVER be interpolated AND unsnapped
-      //   if (coords.interpolated) {
-      //     marker.setIcon(BLUE_MARKER);
-      //   } else if (!coords.related) {
-      //     marker.setIcon(YELLOW_MARKER);
-      //   } else if (coords.originalIndex != undefined) {
-      //     marker.setIcon(RED_MARKER);
-      //     addCorrespondence(coords, marker);
-      //   } else {
-      //     marker.setIcon({
-      //       url: GREEN_MARKER,
-      //       scaledSize: { width: 20, height: 20 },
-      //     });
-      //     addCorrespondence(coords, marker);
-      //   }
+        // Coord should NEVER be interpolated AND unsnapped
+        if (coords.interpolated) {
+          marker.setIcon(BLUE_MARKER);
+        } else if (!coords.related) {
+          marker.setIcon(YELLOW_MARKER);
+        } else if (coords.originalIndex != undefined) {
+          marker.setIcon(RED_MARKER);
+          addCorrespondence(coords, marker);
+        } else {
+          marker.setIcon({
+            url: GREEN_MARKER,
+            scaledSize: { width: 20, height: 20 },
+          });
+          addCorrespondence(coords, marker);
+        }
 
-      //   // Make markers change opacity when the mouse scrubs across them
-      //   marker.addListener("mouseover", function (mevt) {
-      //     marker.setOpacity(1.0);
-      //   });
-      //   marker.addListener("mouseout", function (mevt) {
-      //     marker.setOpacity(0.5);
-      //   });
+        // Make markers change opacity when the mouse scrubs across them
+        marker.addListener("mouseover", function (mevt) {
+          marker.setOpacity(1.0);
+        });
+        marker.addListener("mouseout", function (mevt) {
+          marker.setOpacity(0.5);
+        });
 
-      //   coords.marker = marker; // Save a reference for easy access later
-      //   markers.push(marker);
+        coords.marker = marker; // Save a reference for easy access later
+        markers.push(marker);
 
-      //   return marker;
-      // }
+        return marker;
+      }
 
       /**
        * Animate an icon along a polyline
@@ -1007,7 +1007,7 @@
     </script>
   </head>
   <body>
-    <!-- <div class="floating" id="toggle">&mdash;</div> -->
+    <div class="floating" id="toggle">&mdash;</div>
     <div id="panel">
       <div class="block">
         <strong>Sample Queries</strong>
@@ -1021,9 +1021,9 @@
       <form id="controls">
         <div class="block">
           <div>
-            <!-- <strong
+            <strong
               ><span id="requestURL">Request URL</span> or Path (Pipe
-              Separated)</strong -->
+              Separated)</strong
             ><br />
             <textarea
               id="coords"
@@ -1033,17 +1033,17 @@
               id="exampleEmailInput"
             ></textarea>
           </div>
-          <!-- <div>
+          <div>
             <label>Interpolate: </label>
             <input for="interpolate" id="interpolate" type="checkbox" checked />
-          </div> -->
+          </div>
         </div>
         <div>
           <div class="block">
             <button id="plot" class="button raised blue">Plot a Course</button>
-            <!-- <button id="distance" class="button raised blue">
+            <button id="distance" class="button raised blue">
               Toggle Distances
-            </button> -->
+            </button>
           </div>
           <div id="legend">
             <img
