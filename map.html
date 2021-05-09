@@ -147,7 +147,7 @@
         "&placeid=";
 
       // URL for Speed limits
-      var SPEED_LIMIT_URL = "https://roads.googleapis.com/v1/speedLimits";
+      // var SPEED_LIMIT_URL = "https://roads.googleapis.com/v1/speedLimits";
 
       var coords;
 
@@ -233,20 +233,20 @@
           $("#plot").trigger("click");
         });
 
-        $("#toggle").click(function (e) {
-          if ($("#panel").css("display") != "none") {
-            $("#toggle").html("+");
-            $("#panel").hide();
-          } else {
-            $("#toggle").html("&mdash;");
-            $("#panel").show();
-          }
-        });
+        // $("#toggle").click(function (e) {
+        //   if ($("#panel").css("display") != "none") {
+        //     $("#toggle").html("+");
+        //     $("#panel").hide();
+        //   } else {
+        //     $("#toggle").html("&mdash;");
+        //     $("#panel").show();
+        //   }
+        // });
 
         // Centre the map on Sydney
         var mapOptions = {
           center: { lat: -33.870315, lng: 151.196532 },
-          zoom: 14,
+          zoom: 20,
         };
 
         // Map object
@@ -364,19 +364,19 @@
           });
         }
 
-        // Toggle the distance polylines of the original points to show on the maps
-        $("#distance").click(function (e) {
-          for (var i = 0; i < distPolylines.length; i++) {
-            distPolylines[i].setVisible(!distPolylines[i].getVisible());
-          }
-          // Clear all infoWindows associated with distance polygons on toggle
-          for (var i = 0; i < infoWindows.length; i++) {
-            if (infoWindows[i].dist) {
-              infoWindows[i].close();
-            }
-          }
-          e.preventDefault();
-        });
+        // // Toggle the distance polylines of the original points to show on the maps
+        // $("#distance").click(function (e) {
+        //   for (var i = 0; i < distPolylines.length; i++) {
+        //     distPolylines[i].setVisible(!distPolylines[i].getVisible());
+        //   }
+        //   // Clear all infoWindows associated with distance polygons on toggle
+        //   for (var i = 0; i < infoWindows.length; i++) {
+        //     if (infoWindows[i].dist) {
+        //       infoWindows[i].close();
+        //     }
+        //   }
+        //   e.preventDefault();
+        // });
 
         /**
          * Compute the distance between each original point and create a polyline
@@ -730,7 +730,7 @@
           $("#panel").addClass("floating panel");
           $("#button-div").addClass("button-div");
           $("#coords").removeClass("coords-large").addClass("coords-small");
-          $("#toggle").show();
+          // $("#toggle").show();
           $("#map").height("100%");
         }
       });
@@ -1007,7 +1007,7 @@
     </script>
   </head>
   <body>
-    <div class="floating" id="toggle">&mdash;</div>
+    <!-- <div class="floating" id="toggle">&mdash;</div> -->
     <div id="panel">
       <div class="block">
         <strong>Sample Queries</strong>
@@ -1041,9 +1041,9 @@
         <div>
           <div class="block">
             <button id="plot" class="button raised blue">Plot a Course</button>
-            <button id="distance" class="button raised blue">
+            <!-- <button id="distance" class="button raised blue">
               Toggle Distances
-            </button>
+            </button> -->
           </div>
           <div id="legend">
             <img
