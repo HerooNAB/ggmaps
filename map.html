@@ -131,13 +131,13 @@
       var API_KEY = "AIzaSyDJ8qtUhVb7se1VMUsNugrAY6EZIEnJoVg";
 
       // Icons for markers
-      var RED_MARKER = "https://maps.google.com/mapfiles/ms/icons/red-dot.png";
-      var GREEN_MARKER =
-        "https://maps.google.com/mapfiles/ms/icons/green-dot.png";
-      var BLUE_MARKER =
-        "https://maps.google.com/mapfiles/ms/icons/blue-dot.png";
-      var YELLOW_MARKER =
-        "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
+      // var RED_MARKER = "https://maps.google.com/mapfiles/ms/icons/red-dot.png";
+      // var GREEN_MARKER =
+      //   "https://maps.google.com/mapfiles/ms/icons/green-dot.png";
+      // var BLUE_MARKER =
+      //   "https://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+      // var YELLOW_MARKER =
+      //   "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
 
       // URL for places requests
       var PLACES_URL =
@@ -246,7 +246,7 @@
         // Centre the map on Sydney
         var mapOptions = {
           center: { lat: -33.870315, lng: 151.196532 },
-          zoom: 20,
+          zoom: 14,
         };
 
         // Map object
@@ -844,44 +844,44 @@
        * @param {ExtendedLatLng} coords - Coords of where to add the marker
        * @return {!Object} marker - the marker object created
        */
-      function addMarker(coords) {
-        var marker = new google.maps.Marker({
-          position: coords,
-          title: coords.lat + "," + coords.lng,
-          map: map,
-          opacity: 0.5,
-          icon: RED_MARKER,
-        });
+      // function addMarker(coords) {
+      //   var marker = new google.maps.Marker({
+      //     position: coords,
+      //     title: coords.lat + "," + coords.lng,
+      //     map: map,
+      //     opacity: 0.5,
+      //     icon: RED_MARKER,
+      //   });
 
-        // Coord should NEVER be interpolated AND unsnapped
-        if (coords.interpolated) {
-          marker.setIcon(BLUE_MARKER);
-        } else if (!coords.related) {
-          marker.setIcon(YELLOW_MARKER);
-        } else if (coords.originalIndex != undefined) {
-          marker.setIcon(RED_MARKER);
-          addCorrespondence(coords, marker);
-        } else {
-          marker.setIcon({
-            url: GREEN_MARKER,
-            scaledSize: { width: 20, height: 20 },
-          });
-          addCorrespondence(coords, marker);
-        }
+      //   // Coord should NEVER be interpolated AND unsnapped
+      //   if (coords.interpolated) {
+      //     marker.setIcon(BLUE_MARKER);
+      //   } else if (!coords.related) {
+      //     marker.setIcon(YELLOW_MARKER);
+      //   } else if (coords.originalIndex != undefined) {
+      //     marker.setIcon(RED_MARKER);
+      //     addCorrespondence(coords, marker);
+      //   } else {
+      //     marker.setIcon({
+      //       url: GREEN_MARKER,
+      //       scaledSize: { width: 20, height: 20 },
+      //     });
+      //     addCorrespondence(coords, marker);
+      //   }
 
-        // Make markers change opacity when the mouse scrubs across them
-        marker.addListener("mouseover", function (mevt) {
-          marker.setOpacity(1.0);
-        });
-        marker.addListener("mouseout", function (mevt) {
-          marker.setOpacity(0.5);
-        });
+      //   // Make markers change opacity when the mouse scrubs across them
+      //   marker.addListener("mouseover", function (mevt) {
+      //     marker.setOpacity(1.0);
+      //   });
+      //   marker.addListener("mouseout", function (mevt) {
+      //     marker.setOpacity(0.5);
+      //   });
 
-        coords.marker = marker; // Save a reference for easy access later
-        markers.push(marker);
+      //   coords.marker = marker; // Save a reference for easy access later
+      //   markers.push(marker);
 
-        return marker;
-      }
+      //   return marker;
+      // }
 
       /**
        * Animate an icon along a polyline
@@ -1033,10 +1033,10 @@
               id="exampleEmailInput"
             ></textarea>
           </div>
-          <div>
+          <!-- <div>
             <label>Interpolate: </label>
             <input for="interpolate" id="interpolate" type="checkbox" checked />
-          </div>
+          </div> -->
         </div>
         <div>
           <div class="block">
