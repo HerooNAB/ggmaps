@@ -332,37 +332,37 @@
 
         // Make AJAX request to the snapToRoadsAPI
         // with coordinates parsed from text input element.
-        function bendAndSnap() {
-          coords = parseCoordsFromQuery($("#coords").val());
-          location.hash = coords;
-          $.ajax({
-            type: "GET",
-            url: "https://roads.googleapis.com/v1/snapToRoads",
-            data: {
-              interpolate: $("#interpolate").is(":checked"),
-              key: API_KEY,
-              path: coords,
-            },
-            success: function (data) {
-              $("#requestURL").html(
-                '<a target="blank" href="' + this.url + '">Request URL</a>'
-              );
-              processSnapToRoadResponse(data);
-              drawSnappedPolyline(snappedCoordinates);
-              drawOriginals(originals);
-              fitBounds(markers);
-            },
-            error: function () {
-              $("#requestURL").html(
-                "<strong>That query didn't work :(</strong>" +
-                  '<p>Try looking at the <a href="' +
-                  this.url +
-                  '">Request URL</a></p>'
-              );
-              clearMap();
-            },
-          });
-        }
+        // function bendAndSnap() {
+        //   coords = parseCoordsFromQuery($("#coords").val());
+        //   location.hash = coords;
+        //   $.ajax({
+        //     type: "GET",
+        //     url: "https://roads.googleapis.com/v1/snapToRoads",
+        //     data: {
+        //       interpolate: $("#interpolate").is(":checked"),
+        //       key: API_KEY,
+        //       path: coords,
+        //     },
+        //     success: function (data) {
+        //       $("#requestURL").html(
+        //         '<a target="blank" href="' + this.url + '">Request URL</a>'
+        //       );
+        //       processSnapToRoadResponse(data);
+        //       drawSnappedPolyline(snappedCoordinates);
+        //       drawOriginals(originals);
+        //       fitBounds(markers);
+        //     },
+        //     error: function () {
+        //       $("#requestURL").html(
+        //         "<strong>That query didn't work :(</strong>" +
+        //           '<p>Try looking at the <a href="' +
+        //           this.url +
+        //           '">Request URL</a></p>'
+        //       );
+        //       clearMap();
+        //     },
+        //   });
+        // }
 
         // // Toggle the distance polylines of the original points to show on the maps
         // $("#distance").click(function (e) {
@@ -1021,9 +1021,9 @@
       <form id="controls">
         <div class="block">
           <div>
-            <strong
+            <!-- <strong
               ><span id="requestURL">Request URL</span> or Path (Pipe
-              Separated)</strong
+              Separated)</strong -->
             ><br />
             <textarea
               id="coords"
